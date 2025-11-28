@@ -5,3 +5,85 @@
 #root {
   min-height: 100vh;
 }
+
+.markdown-body {
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.25em;
+}
+
+.markdown-body h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.25em;
+}
+
+.markdown-body h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin-bottom: 0.25em;
+}
+
+.markdown-body hr {
+  margin: 1.5em 0;
+}
+
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body p {
+  margin: 0 0 0.75rem;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.25rem;
+  list-style-position: outside;
+}
+
+.markdown-body ul:not(ul ul),
+.markdown-body ol:not(ol ol) {
+  margin: 0.25em 0 0.75em;
+}
+
+.markdown-body li {
+  margin: 0;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+}
+
+.markdown-body ol {
+  list-style-type: decimal;
+}
+
+.markdown-body code {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.95em;
+}
+
+.markdown-body pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  padding: 0.85rem;
+  overflow-x: auto;
+  margin: 0 0 1em;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  background-color: transparent;
+}

@@ -20,6 +20,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import ReactMarkdown from "react-markdown";
 import "./App.css";
 
 const API_URL = "http://localhost:3000/chat/stream";
@@ -239,7 +240,9 @@ function ChatBubble({ message, isStreaming }: ChatBubbleProps) {
             : "bg-card text-foreground"
         )}
       >
-        <p className="whitespace-pre-wrap">{message.content}</p>
+        <div className="markdown-body">
+          <ReactMarkdown>{message.content}</ReactMarkdown>
+        </div>
         {isStreaming && (
           <div className="mt-2 flex items-center gap-2 text-[11px] text-muted-foreground">
             <Loader2 className="h-3 w-3 animate-spin" />
