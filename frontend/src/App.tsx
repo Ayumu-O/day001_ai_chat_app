@@ -35,12 +35,8 @@ function App() {
   }, [messages, streamData]);
 
   return (
-    <div
-      className="h-screen
-    bg-green-200
-    bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.08),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(16,185,129,0.08),transparent_30%)]"
-    >
-      <div className="h-full mx-auto flex max-w-5xl flex-col gap-6 px-4 py-10">
+    <div className="bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.08),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(16,185,129,0.08),transparent_30%)]">
+      <div className="h-screen flex flex-col gap-4 mx-auto max-w-5xl px-4 py-4">
         <ChatHeader
           statusText={statusText}
           onReset={resetHistory}
@@ -48,7 +44,7 @@ function App() {
           isLoading={isLoading}
         />
 
-        <Card className="h-full border-border/70 shadow-xl backdrop-blur">
+        <Card className="h-full max-h-full overflow-y-hidden flex flex-col border-border/70 shadow-xl backdrop-blur">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-xl">
               <Bot className="w-5 text-primary" />
@@ -59,7 +55,7 @@ function App() {
             </CardDescription>
           </CardHeader>
 
-          <CardContent className="h-2/3 pb-6">
+          <CardContent className="grow max-h-full overflow-y-hidden pb-6">
             <ChatHistory
               messages={messages}
               streamData={streamData}

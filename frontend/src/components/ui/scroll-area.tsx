@@ -9,12 +9,12 @@ const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
     return (
       <div
         ref={ref}
-      className={cn(
-        "relative overflow-hidden rounded-xl border border-border/60 bg-background/60",
-        className
-      )}
-      {...props}
-    >
+        className={cn(
+          "relative overflow-y-auto rounded-xl border border-border/60 bg-background/60",
+          className
+        )}
+        {...props}
+      >
         <div className="w-full overflow-y-auto pr-2">{children}</div>
       </div>
     );

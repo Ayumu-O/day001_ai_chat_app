@@ -39,12 +39,12 @@ export const ChatForm = ({
         >
           {isLoading ? (
             <>
-              <Loader2 className="w-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
               送信中...
             </>
           ) : (
             <>
-              <Send className="w-4" />
+              <Send className="h-4 w-4" />
               送信
             </>
           )}

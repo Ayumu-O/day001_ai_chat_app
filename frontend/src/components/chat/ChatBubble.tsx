@@ -13,17 +13,24 @@ export const ChatBubble = ({ message, isStreaming }: ChatBubbleProps) => {
   const isUser = message.role === "user";
 
   return (
-    <div className={cn("flex items-start gap-3 text-sm", isUser ? "justify-end" : "justify-start")}>
+    <div
+      className={cn(
+        "flex items-start gap-3 text-sm",
+        isUser ? "justify-end" : "justify-start"
+      )}
+    >
       {!isUser && (
-        <div className="flex w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-          <Bot className="w-4" />
+        <div className="flex mt-1 h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+          <Bot className="h-4 w-4" />
         </div>
       )}
 
       <div
         className={cn(
           "max-w-[85%] rounded-2xl px-4 py-3 leading-relaxed shadow-sm ring-1 ring-border/60",
-          isUser ? "ml-auto bg-primary text-primary-foreground" : "bg-card text-foreground"
+          isUser
+            ? "ml-auto bg-primary text-primary-foreground"
+            : "bg-card text-foreground"
         )}
       >
         <div className="markdown-body">
@@ -32,15 +39,15 @@ export const ChatBubble = ({ message, isStreaming }: ChatBubbleProps) => {
 
         {isStreaming && (
           <div className="mt-2 flex items-center gap-2 text-[11px] text-muted-foreground">
-            <Loader2 className="w-3 animate-spin" />
+            <Loader2 className="h-3 w-3 animate-spin" />
             <span>ストリーミング中</span>
           </div>
         )}
       </div>
 
       {isUser && (
-        <div className="flex w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 text-primary-foreground shadow-sm">
-          <UserRound className="w-4" />
+        <div className="flex mt-1 h-9 w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 text-primary-foreground shadow-sm">
+          <UserRound className="h-4 w-4" />
         </div>
       )}
     </div>
