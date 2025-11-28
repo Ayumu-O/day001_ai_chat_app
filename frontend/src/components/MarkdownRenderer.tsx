@@ -51,6 +51,7 @@ const markdownComponents: Components = {
   code: CodeBlock,
 };
 
+// Markdownをカスタマイズした方法でレンダリングするコンポーネント
 export function MarkdownRenderer({ children }: Props) {
   return (
     <ReactMarkdown components={markdownComponents}>{children}</ReactMarkdown>
