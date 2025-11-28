@@ -1,4 +1,11 @@
-import { Bot, Loader2, Send, Sparkles, UserRound } from "lucide-react";
+import {
+  Bot,
+  Loader2,
+  RotateCcw,
+  Send,
+  Sparkles,
+  UserRound,
+} from "lucide-react";
 import {
   type FormEvent,
   type KeyboardEvent,
@@ -115,7 +122,15 @@ function App() {
     }
   };
 
+  const resetHistory = () => {
+    if (isLoading) return;
+
+    setMessages([]);
+    setStreamData("");
+  };
+
   const statusText = isLoading ? "応答を生成中..." : "待機中";
+  const canReset = messages.length > 0 || Boolean(streamData);
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.08),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(16,185,129,0.08),transparent_30%)]">
@@ -130,14 +145,27 @@ function App() {
               ストリーミングで返答を描画するミニマルなチャットUIです。
             </p>
           </div>
-          <div className="flex items-center gap-2 rounded-full border border-border/70 bg-card px-3 py-1.5 text-xs text-muted-foreground shadow-sm">
-            <span
-              className={cn(
-                "h-2 w-2 rounded-full",
-                isLoading ? "bg-amber-500 animate-pulse" : "bg-emerald-500"
-              )}
-            />
-            {statusText}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 rounded-full border border-border/70 bg-card px-3 py-1.5 text-xs text-muted-foreground shadow-sm">
+              <span
+                className={cn(
+                  "h-2 w-2 rounded-full",
+                  isLoading ? "bg-amber-500 animate-pulse" : "bg-emerald-500"
+                )}
+              />
+              {statusText}
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={resetHistory}
+              disabled={!canReset || isLoading}
+              className="gap-2"
+            >
+              <RotateCcw className="h-4 w-4" />
+              履歴リセット
+            </Button>
           </div>
         </header>
 
