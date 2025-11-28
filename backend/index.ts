@@ -1,26 +1,49 @@
 import { GoogleGenAI } from "@google/genai";
+import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { z } from "zod";
+
+const APP_URL = "http://localhost:5173";
+
+const chatRequestSchema = z.object({
+  history: z.array(
+    z.object({
+      role: z.enum(["user", "model"]),
+      content: z.string(),
+    })
+  ),
+  message: z.string(),
+});
 
 const app = new Hono();
 
 const gemini = new GoogleGenAI({});
 
+app.use(
+  "*",
+  cors({
+    origin: APP_URL,
+    allowHeaders: ["Content-Type"],
+    allowMethods: ["GET", "POST", "OPTIONS"],
+  })
+);
+
 app.get("/health", (c) => {
   return c.json({ status: "ok" });
 });
 
-app.post("/gemini/stream", async (c) => {
-  const { history, message } = await c.req.json();
-  if (!history) {
-    return c.json({ error: "history is required" }, 400);
-  }
-  if (!message) {
-    return c.json({ error: "message is required" }, 400);
-  }
+app.post("/chat/stream", zValidator("json", chatRequestSchema), async (c) => {
+  const { history, message } = c.req.valid("json");
 
   const chat = gemini.chats.create({
     model: "gemini-2.5-flash",
-    history: history,
+    history: history.map((msg) => {
+      return {
+        role: msg.role,
+        parts: [{ text: msg.content }],
+      };
+    }),
   });
 
   const stream = await chat.sendMessageStream({
