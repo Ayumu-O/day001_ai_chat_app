@@ -11,15 +11,24 @@ type ChatHistoryProps = {
   endRef: RefObject<HTMLDivElement | null>;
 };
 
-export const ChatHistory = ({ messages, streamData, endRef }: ChatHistoryProps) => {
+export const ChatHistory = ({
+  messages,
+  streamData,
+  endRef,
+}: ChatHistoryProps) => {
   return (
-    <ScrollArea className="h-[520px] bg-muted/40 px-4 py-3">
+    <ScrollArea className="h-full bg-muted/40 px-4 py-3">
       <div className="space-y-4">
         {messages.map((message, index) => (
           <ChatBubble key={`${message.role}-${index}`} message={message} />
         ))}
 
-        {streamData && <ChatBubble message={{ role: "model", content: streamData }} isStreaming />}
+        {streamData && (
+          <ChatBubble
+            message={{ role: "model", content: streamData }}
+            isStreaming
+          />
+        )}
 
         <div ref={endRef} />
       </div>

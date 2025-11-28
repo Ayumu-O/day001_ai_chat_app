@@ -12,7 +12,13 @@ type ChatFormProps = {
   isLoading: boolean;
 };
 
-export const ChatForm = ({ input, onInputChange, onSubmit, onKeyDown, isLoading }: ChatFormProps) => {
+export const ChatForm = ({
+  input,
+  onInputChange,
+  onSubmit,
+  onKeyDown,
+  isLoading,
+}: ChatFormProps) => {
   return (
     <form onSubmit={onSubmit} className="flex w-full flex-col gap-3">
       <Textarea
@@ -26,15 +32,19 @@ export const ChatForm = ({ input, onInputChange, onSubmit, onKeyDown, isLoading 
 
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
         <p>Enterで送信、Shift + Enterで改行</p>
-        <Button type="submit" disabled={isLoading || !input.trim()} className="gap-2">
+        <Button
+          type="submit"
+          disabled={isLoading || !input.trim()}
+          className="gap-2"
+        >
           {isLoading ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <Loader2 className="w-4 animate-spin" />
               送信中...
             </>
           ) : (
             <>
-              <Send className="h-4 w-4" />
+              <Send className="w-4" />
               送信
             </>
           )}
