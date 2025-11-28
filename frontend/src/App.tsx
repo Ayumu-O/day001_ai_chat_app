@@ -20,7 +20,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import ReactMarkdown from "react-markdown";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import "./App.css";
 
 const API_URL = "http://localhost:3000/chat/stream";
@@ -241,7 +241,7 @@ function ChatBubble({ message, isStreaming }: ChatBubbleProps) {
         )}
       >
         <div className="markdown-body">
-          <ReactMarkdown>{message.content}</ReactMarkdown>
+          <MarkdownRenderer>{message.content}</MarkdownRenderer>
         </div>
         {isStreaming && (
           <div className="mt-2 flex items-center gap-2 text-[11px] text-muted-foreground">
@@ -251,7 +251,7 @@ function ChatBubble({ message, isStreaming }: ChatBubbleProps) {
         )}
       </div>
       {isUser && (
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-sm">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary to-primary/80 text-primary-foreground shadow-sm">
           <UserRound className="h-4 w-4" />
         </div>
       )}

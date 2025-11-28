@@ -75,15 +75,20 @@
   font-size: 0.95em;
 }
 
-.markdown-body pre {
+/* .markdown-body pre {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 0.5rem;
   padding: 0.85rem;
   overflow-x: auto;
   margin: 0 0 1em;
-}
+} */
 
 .markdown-body pre code {
   padding: 0;
   background-color: transparent;
+}
+
+.markdown-body a {
+  color: var(--color-blue-500);
+  text-decoration: underline;
 }
